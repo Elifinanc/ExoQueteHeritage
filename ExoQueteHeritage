@@ -1,0 +1,93 @@
+using System;
+
+namespace ExoQueteHeritage
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animal[] animalCharacters = new Animal [5];
+            Human human = new Human("Eve");
+            Monkey monkey = new Monkey("Martin");
+            Elephant elephant = new Elephant("Steve");
+            Turtle turtle = new Turtle("Leonardo");
+            Lizard lizard = new Lizard("Lisa");
+
+            animalCharacters[0] = human;
+            animalCharacters[1] = monkey;
+            animalCharacters[2] = elephant;
+            animalCharacters[3] = turtle;
+            animalCharacters[4] = lizard;
+
+            foreach (Animal animal in animalCharacters)
+            {
+                animal.Move();
+                animal.Eat();
+            }
+        }
+    }
+
+    public abstract class Animal
+    {
+        protected short _legsCount;
+        protected string _name;
+        protected string _family;
+
+        public Animal(string name, short legsCount, string family)
+        {
+            _legsCount = legsCount;
+            _name = name;
+            _family = family;
+        }
+
+        public virtual void Move()
+        {
+            Console.WriteLine("My name is " + _name +  " I'm a/an " + _family + ", and I move on my " + _legsCount + " legs.");
+        }
+
+        public void Eat()
+        {
+            Console.WriteLine("You have to know that " + _family + " eats with their mouth.");
+        }
+    }
+
+    public class Human:Animal
+    {
+        public Human(string name):base(name,2,"human")
+        {}
+
+        public override void Move()
+        {
+            Console.WriteLine("I am a " + _name + ", and I walk on my 2 feets.");
+        }
+    }
+
+    public class Monkey : Animal
+    {
+        public Monkey(string name) : base(name, 2, "monkey")
+        { }
+
+        public override void Move()
+        {
+            Console.WriteLine("I am a " + _name + ", and I walk on my 2 feets.");
+        }
+    }
+
+    public class Elephant: Animal
+    {
+        public Elephant(string name) : base(name, 4, "elephant")
+        { }
+    }
+
+    public class Turtle : Animal
+    {
+        public Turtle(string name) : base(name, 4, "turtle")
+        { }
+    }
+
+    public class Lizard : Animal
+    {
+        public Lizard(string name) : base(name, 4, "lizard")
+        { }
+    }
+}
